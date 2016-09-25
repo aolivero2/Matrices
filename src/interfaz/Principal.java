@@ -69,9 +69,19 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         txtNumeroFilas.setBackground(new java.awt.Color(255, 204, 153));
+        txtNumeroFilas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroFilasKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNumeroFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 50, 30));
 
         txtNumeroColumnas.setBackground(new java.awt.Color(255, 204, 153));
+        txtNumeroColumnas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroColumnasKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNumeroColumnas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 50, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 300, 150));
@@ -113,6 +123,11 @@ public class Principal extends javax.swing.JFrame {
         cmdLimpiar.setBackground(new java.awt.Color(204, 204, 255));
         cmdLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         cmdLimpiar.setText("Limpiar");
+        cmdLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLimpiarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 90, 40));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 330, 150));
@@ -285,9 +300,108 @@ public class Principal extends javax.swing.JFrame {
                 }
                     break;
             
-            
-            
+            case 6:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) tblTablaInicial.getValueAt (i,j);
+                        if (i==0||j==(nc/2)){
+                            tblTablaResultado.setValueAt(aux,i,j);
+                            
+                        }
+                    }
+                }
+                    break;
+                
+                case 7:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) tblTablaInicial.getValueAt (i,j);
+                        if (j==i/2||j==nf-1-i/2){
+                            tblTablaResultado.setValueAt(aux,i,j);
+                            
+                        }
+                    }
+                }
+                    break;
+            case 8:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) tblTablaInicial.getValueAt (i,j);
+                        if (j==0||i==0||i==(nf-1)/2||i==nf-1){
+                            tblTablaResultado.setValueAt(aux,i,j);
+                            
+                        }
+                    }
+                }
+                    break;
+           case 9:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) tblTablaInicial.getValueAt (i,j);
+                        if (j==0||i==0||i==(nf-1)/2){
+                            tblTablaResultado.setValueAt(aux,i,j);
+                            
+                        }
+                    }
+                }
+                    break;
+            case 10:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) tblTablaInicial.getValueAt (i,j);
+                        if (j==0||i==0||i==(nf-1)/2||j==(nc-1)/4){
+                            tblTablaResultado.setValueAt(aux,i,j);
+                            
+                        }
+                    }
+                }
+                    break;
+            case 11:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) tblTablaInicial.getValueAt (i,j);
+                        if (j==nc/2){
+                            tblTablaResultado.setValueAt(aux,i,j);
+                            
+                        }
+                    }
+                }
+                    break;
+              case 12:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) tblTablaInicial.getValueAt (i,j);
+                        if (j==0||i==j||j==nc-1){
+                            tblTablaResultado.setValueAt(aux,i,j);
+                            
+                        }
+                    }
+                }
+                    break;
+               case 13:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) tblTablaInicial.getValueAt (i,j);
+                        if (j==0||i==j||j==nc-1){
+                            tblTablaResultado.setValueAt(aux,i,j);
+                            
+                        }
+                    }
+                }
+                    break;
+              case 14:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) tblTablaInicial.getValueAt (i,j);
+                        if (i==j||nf-1-i==j){
+                            tblTablaResultado.setValueAt(aux,i,j);
+                            
+                        }
+                    }
+                }
+                    break;
         }
+        
         
     }//GEN-LAST:event_cmdOperacionActionPerformed
 
@@ -304,6 +418,49 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_cmdLlenadoAutoActionPerformed
+
+    private void cmdLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLimpiarActionPerformed
+      int nf,nc;
+      nc=tblTablaInicial.getColumnCount();
+      nf=tblTablaInicial.getRowCount();
+      DefaultTableModel tm,tm2;
+      
+      txtNumeroColumnas.setText("");
+      txtNumeroFilas.setText("");
+      cmbOpciones.setSelectedIndex(0);
+      
+      tm=(DefaultTableModel) tblTablaInicial.getModel();
+      tm2=(DefaultTableModel) tblTablaResultado.getModel();
+      
+       tm.setRowCount(0);
+       tm.setColumnCount(0);
+       
+       tm2.setRowCount(0);
+       tm2.setColumnCount(0);
+      
+    }//GEN-LAST:event_cmdLimpiarActionPerformed
+
+    private void txtNumeroFilasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroFilasKeyTyped
+        char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume();    
+          } 
+    }//GEN-LAST:event_txtNumeroFilasKeyTyped
+
+    private void txtNumeroColumnasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroColumnasKeyTyped
+        char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume();    
+          } 
+    }//GEN-LAST:event_txtNumeroColumnasKeyTyped
 
     /**
      * @param args the command line arguments
