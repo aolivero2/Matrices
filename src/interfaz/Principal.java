@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import clases.Helper;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +21,11 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        JButton botonesH[]={cmdCrear,cmdLimpiar};
+        JButton botonesD[]={cmdLlenadoManual,cmdOperacion,cmdLlenadoAuto};
+        
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
     }
 
     /**
@@ -41,14 +48,13 @@ public class Principal extends javax.swing.JFrame {
         cmdLlenadoAuto = new javax.swing.JButton();
         cmdOperacion = new javax.swing.JButton();
         cmdLimpiar = new javax.swing.JButton();
+        cmdLlenadoManual = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTablaInicial = new javax.swing.JTable();
         cmbOpciones = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTablaResultado = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,7 +104,7 @@ public class Principal extends javax.swing.JFrame {
                 cmdCrearActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 90, 40));
+        jPanel3.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 40));
 
         cmdLlenadoAuto.setBackground(new java.awt.Color(204, 204, 255));
         cmdLlenadoAuto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -108,7 +114,7 @@ public class Principal extends javax.swing.JFrame {
                 cmdLlenadoAutoActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdLlenadoAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 170, 40));
+        jPanel3.add(cmdLlenadoAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 170, 40));
 
         cmdOperacion.setBackground(new java.awt.Color(204, 204, 255));
         cmdOperacion.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -118,7 +124,7 @@ public class Principal extends javax.swing.JFrame {
                 cmdOperacionActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdOperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 110, 40));
+        jPanel3.add(cmdOperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 110, 40));
 
         cmdLimpiar.setBackground(new java.awt.Color(204, 204, 255));
         cmdLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -128,9 +134,18 @@ public class Principal extends javax.swing.JFrame {
                 cmdLimpiarActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 90, 40));
+        jPanel3.add(cmdLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 90, 40));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 330, 150));
+        cmdLlenadoManual.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        cmdLlenadoManual.setText("Llenado Manual");
+        cmdLlenadoManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLlenadoManualActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdLlenadoManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 150, 40));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 450, 150));
 
         jLabel3.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 0, 102));
@@ -148,7 +163,7 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblTablaInicial);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 430, 270));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 430, 270));
 
         cmbOpciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Diagonal segundaria", "Triaungular superior", "Triaungular inferior", "Transpuesta", "Letra A", "Letra Z", "Letra T", "Letra V", "Letra E", "Letra F", "Letra P", "Letra I", "Letra N", "Letra Y", "Letra X" }));
         jPanel1.add(cmbOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, 140, 30));
@@ -163,244 +178,149 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblTablaResultado);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 430, 270));
-
-        jPanel4.setBackground(new java.awt.Color(255, 204, 153));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultado:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 14), new java.awt.Color(255, 102, 51))); // NOI18N
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextField3.setEditable(false);
-        jPanel4.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 450, 60));
-
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 540, 540, 110));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 240, 430, 270));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1057, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1078, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(1073, 714));
+        setSize(new java.awt.Dimension(1114, 616));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-        int nf,nc;
+        int nf, nc;
         DefaultTableModel tm, tm2;
-        
-        if (txtNumeroColumnas.getText().trim().isEmpty()){
-            JOptionPane.showMessageDialog(this,"Digite el numero de columnas","Error",JOptionPane.ERROR_MESSAGE);
-            txtNumeroColumnas.requestFocusInWindow();
-            
-        } else if (txtNumeroFilas.getText().trim().isEmpty()){
-            JOptionPane.showMessageDialog(this,"Digite el numero de filas","Error",JOptionPane.ERROR_MESSAGE);
+
+        if (txtNumeroFilas.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite el numero de columnas", "Error", JOptionPane.ERROR_MESSAGE);
             txtNumeroFilas.requestFocusInWindow();
             
+        } else if (txtNumeroColumnas.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite el numero de filas", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNumeroColumnas.requestFocusInWindow();
+            
         } else {
+        nf = Integer.parseInt(txtNumeroFilas.getText());
+        nc = Integer.parseInt(txtNumeroColumnas.getText());
         
-            nf = Integer.parseInt(txtNumeroFilas.getText());
-            nc = Integer.parseInt (txtNumeroColumnas.getText());
-           
-            
-            tm = (DefaultTableModel)tblTablaInicial.getModel();
-            tm2 = (DefaultTableModel) tblTablaResultado.getModel();
-            
-            tm.setRowCount (nf);
-            tm.setColumnCount (nc);
-            
-            tm2.setRowCount(nf);
-            tm2.setColumnCount(nc);
+        if (nc != nf) {
+            Helper.mensaje(this, "Digite el mismo numero de filas y columnas", 2);
+            txtNumeroFilas.setText("");
+            txtNumeroColumnas.setText("");
+            txtNumeroFilas.requestFocusInWindow();
+        } else if (nf == 0) {
+            Helper.mensaje(this, "Por favor, digite un numero diferente", 3);
+            txtNumeroFilas.requestFocusInWindow();
+            txtNumeroFilas.selectAll();
+        } else if (nc == 0) {
+            Helper.mensaje(this, "Por favor, digite un numero diferente", 3);
+            txtNumeroColumnas.selectAll();
+        }else if (nf<10 && nc<10){
+          Helper.mensaje(this, "Por favor, digite un numero mayor que 10", 2);
+          txtNumeroFilas.setText("");
+          txtNumeroColumnas.setText("");
+          txtNumeroFilas.requestFocusInWindow();
+        } else if (nf>=20 && nc>=20){
+          Helper.mensaje(this, "Por favor, digite un numero menor que 20", 2);
+          txtNumeroFilas.setText("");
+          txtNumeroColumnas.setText("");
+          txtNumeroFilas.requestFocusInWindow();  
+        } else {
+        tm = (DefaultTableModel) tblTablaInicial.getModel();
+        tm2 = (DefaultTableModel) tblTablaResultado.getModel();
+
+        tm.setRowCount(nf);
+        tm.setColumnCount(nc);
+
+        tm2.setRowCount(nf);
+        tm2.setColumnCount(nc);
+        
+        JButton botonesH[] = {cmdLlenadoAuto, cmdLlenadoManual, cmdLimpiar};
+        JButton botonesD[] = {cmdCrear, cmdOperacion};
+
+            Helper.habilitarBotones(botonesH);
+            Helper.deshabilitarBotones(botonesD);
         }
-      
+        }
     }//GEN-LAST:event_cmdCrearActionPerformed
 
     private void cmdOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacionActionPerformed
-        int op,nf,nc,aux;
-        
+        int op, nf, nc, aux;
+
         op = cmbOpciones.getSelectedIndex();
-        nf = tblTablaInicial.getRowCount();
-        nc= tblTablaInicial.getColumnCount();
-        
-        switch (op){
-            
+        Helper.limpiartabla(tblTablaResultado);
+
+        switch (op) {
             case 0:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (nf-1-i==j){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                        }
-                    }
-                }
-                    break;
-            
-               case 1:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (i<j){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
-             
-               case 2:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (i>j){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
-            
-                case 3:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (i>j){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
-            
-                case 4:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (j==0||j==nc-1||i==0||i==(nf-1)/2){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
-             case 5:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (i==0||nf-1-i==j||i==nf-1){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
-            
+                Helper.DiagonalSegundaria(tblTablaInicial, tblTablaResultado);
+                break;
+
+            case 1:
+                Helper.TriangularS(tblTablaInicial, tblTablaResultado);
+                break;
+
+            case 2:
+                Helper.TriangularIn(tblTablaInicial, tblTablaResultado);
+                break;
+
+            case 3:
+                Helper.Transpuesta(tblTablaInicial, tblTablaResultado);
+                break;
+
+            case 4:
+                Helper.LetraA(tblTablaInicial, tblTablaResultado);
+                break;
+            case 5:
+                Helper.LetraZ(tblTablaInicial, tblTablaResultado);
+                break;
+
             case 6:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (i==0||j==(nc/2)){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
-                
-                case 7:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (j==i/2||j==nf-1-i/2){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
+                Helper.LetraT(tblTablaInicial, tblTablaResultado);
+                break;
+
+            case 7:
+                Helper.LetraV(tblTablaInicial, tblTablaResultado);
+                break;
             case 8:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (j==0||i==0||i==(nf-1)/2||i==nf-1){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
-           case 9:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (j==0||i==0||i==(nf-1)/2){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
+                Helper.LetraE(tblTablaInicial, tblTablaResultado);
+                break;
+            case 9:
+                Helper.LetraF(tblTablaInicial, tblTablaResultado);
+                break;
             case 10:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (j==0||i==0||i==(nf-1)/2||j==(nc-1)/4){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
+                Helper.LetraP(tblTablaInicial, tblTablaResultado);
+                break;
             case 11:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (j==nc/2){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
-              case 12:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (j==0||i==j||j==nc-1){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
-               case 13:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (j==0||i==j||j==nc-1){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
-              case 14:
-                for (int i = 0; i < nf; i++) {
-                    for (int j = 0; j < nc; j++) {
-                        aux = (int) tblTablaInicial.getValueAt (i,j);
-                        if (i==j||nf-1-i==j){
-                            tblTablaResultado.setValueAt(aux,i,j);
-                            
-                        }
-                    }
-                }
-                    break;
+                Helper.LetraI(tblTablaInicial, tblTablaResultado);
+                break;
+            case 12:
+                Helper.LetraN(tblTablaInicial, tblTablaResultado);
+                break;
+            case 13:
+                Helper.LetraY(tblTablaInicial, tblTablaResultado);
+                break;
+            case 14:
+                Helper.LetraX(tblTablaInicial, tblTablaResultado);
+                break;
         }
+        JButton botonesH[]={cmdOperacion,cmdLimpiar};
+        JButton botonesD[]={cmdCrear,cmdLlenadoAuto,cmdLlenadoManual};
+        
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD); 
         
         
     }//GEN-LAST:event_cmdOperacionActionPerformed
@@ -417,6 +337,12 @@ public class Principal extends javax.swing.JFrame {
               tblTablaInicial.setValueAt(n,i,j);
             }
         }
+        JButton botonesH[]={cmdOperacion,cmdLimpiar};
+        JButton botonesD[]={cmdCrear,cmdLlenadoAuto,cmdLlenadoManual};
+        
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);   
+        
     }//GEN-LAST:event_cmdLlenadoAutoActionPerformed
 
     private void cmdLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLimpiarActionPerformed
@@ -437,6 +363,12 @@ public class Principal extends javax.swing.JFrame {
        
        tm2.setRowCount(0);
        tm2.setColumnCount(0);
+       
+        JButton botonesH[]={cmdCrear,cmdLimpiar};
+        JButton botonesD[]={cmdLlenadoManual,cmdOperacion,cmdLlenadoAuto};
+        
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
       
     }//GEN-LAST:event_cmdLimpiarActionPerformed
 
@@ -461,6 +393,50 @@ public class Principal extends javax.swing.JFrame {
               evt.consume();    
           } 
     }//GEN-LAST:event_txtNumeroColumnasKeyTyped
+
+    private void cmdLlenadoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoManualActionPerformed
+        int nf, nc;
+       int n;
+        int sw, res;
+
+        nc = tblTablaInicial.getColumnCount();
+        nf = tblTablaInicial.getRowCount();
+
+        for (int i = 0; i < nf; i++) {
+            for (int j = 0; j < nc; j++) {
+                n = (int) (Math.random() * 50 + 1);
+                tblTablaInicial.setValueAt(n, i, j);
+                do {
+                    sw = 1;
+                    try {
+                        n = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el elemeto en la posicion ["+i+"]"+"["+j+"]").trim());
+                        tblTablaInicial.setValueAt(n, i, j);
+                    } catch (NumberFormatException e) {
+                        Helper.mensaje(this, "Digite un numero valido",3);
+                        sw = 0;
+                    } catch (NullPointerException e) {
+                        res = JOptionPane.showConfirmDialog(this, "¿Seguro que desea salir?", "Salir", JOptionPane.YES_NO_OPTION);
+                        if (res == 0) {
+                            sw = 1;
+                            i = nf;
+                            j = nc;
+                            
+                            Helper.porDefectoTabla(tblTablaInicial);
+                            Helper.porDefectoTabla(tblTablaResultado);
+                        } else {
+                            sw = 0;
+                        }
+                    }
+                } while (sw == 0);
+            }
+        }
+        JButton botonesH[]={cmdOperacion,cmdLimpiar};
+        JButton botonesD[]={cmdLlenadoManual,cmdCrear,cmdLlenadoAuto};
+        
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
+        
+    }//GEN-LAST:event_cmdLlenadoManualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -502,6 +478,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton cmdCrear;
     private javax.swing.JButton cmdLimpiar;
     private javax.swing.JButton cmdLlenadoAuto;
+    private javax.swing.JButton cmdLlenadoManual;
     private javax.swing.JButton cmdOperacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -509,10 +486,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTable tblTablaInicial;
     private javax.swing.JTable tblTablaResultado;
     private javax.swing.JTextField txtNumeroColumnas;
